@@ -4,7 +4,19 @@
   yum: 
     name=epel-release
     state=present
+
 - name: Import epel key
   rpm_key:
     state=present
     key=/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+
+- name: Disable repository
+  yum_repository: 
+    name: epel
+    description: "Extra Packages for Enterprise Linux 7"
+    baseurl: https://dl.fedoraproject.org/pub/epel/7
+    enabled: no
+    failovermethod: priority
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7"
+    gpgcheck: yes
+
