@@ -1,16 +1,19 @@
 ---
 # tasks file for epel
 - name: Install epel
+  become: True
   yum: 
     name=epel-release
     state=present
 
 - name: Import epel key
+  become: True
   rpm_key:
     state=present
     key=/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 
 - name: Disable repository
+  become: True
   yum_repository: 
     name: epel
     description: "Extra Packages for Enterprise Linux 7"
